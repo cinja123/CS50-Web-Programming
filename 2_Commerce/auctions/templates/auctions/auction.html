@@ -1,0 +1,131 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}{{ auction.title }}{% endblock %}
+
+{% block body %}
+    <div id="infoBox">
+        <div class="auction info wrapper">
+            <div class="auction image box">
+                {% if auction.image_url %}
+                    <img class="auction info img" src="{{ auction.image_url }}">
+                {% else %}
+                    <img class="auction info img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png">
+                {% endif %}
+            </div>
+
+            <div class="auction info categories" id="auctionCategories">
+                {% for category in categories %}
+                    <div class="auction info category"><a href="{% url 'category_view' category.id %}">
+                        {{ category.category }}
+                    </a></div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="auction info wrapper">
+            <div class="auction details">
+                <h3>{{ auction.title }}</h3>
+            </div>
+            <div class="auction details">
+                <p>{{ auction.description }}</p>
+                <p>published by {{ auction.creator.username }} on {{ auction.date_published }}</p>
+                <p>starting bid: ${{ auction.start_bid }}</p>
+            </div>
+            <div class="auction details">
+                {% if current_bid == -1%}
+                    <p class="bid current">Starting bid: <span id="currentBid">${{ auction.start_bid }}</span></p>
+                {% else %}
+                    <p class="bid current">Current Bid: <span id="currentBid">${{ current_bid.bid }}</span> by {{ current_bid.bid_user.username }}</p>
+                {% endif %}
+                <!-- Place bids if logged in -->
+                {% if not auction.closed and request.user.is_authenticated %}
+                <form action="{% url 'bid' auction.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="number" step=".01" name="new_bid" min="{{current_bid.bid}}" placeholder="Enter your bid">
+                    <input class="btn btn-primary" type="submit" value="Place bid">
+                </form>
+                <!-- Error: User has to be logged in to bid-->
+                {% elif not auction.closed and not request.user.is_authenticated %}
+                <div id="loginmessage">
+                    <a href="{% url 'login' %}">Log in</a> to place a bid.
+                </div>
+                <!-- Shows the winner of an closed auction, that this user won -->
+                {% elif auction.closed and current_bid != -1 and request.user == current_bid.bid_user %}
+                    <p id="auctionclosed">This auction is closed and you are the winner!</p>
+                <!-- Tells the Auction creator who won the auction -->
+                {% elif auction.closed and current_bid != -1 and request.user == auction.creator %}
+                    <p id="auctionclosed">This auction is closed and {{ current_bid.bid_user.username }} won it!</p>
+                <!-- auction is closed and user is not the winner -->
+                {% else %}
+                    <p id="auctionclosed">This auction is closed!</p>
+                {% endif %}
+                <!-- error if bid isnt higher than bids before -->
+                {% if message %}
+                    {{ message }}
+                {% endif %}
+
+                <!-- Add or remove from Watchlist -->
+                {% if request.user.is_authenticated %}
+                    {% if in_watchlist %}
+                        <form class="watchlist form" action="{% url 'watchlist_add' auction.id %}" method="GET">
+                            <input class="watchlist" type="hidden" name="in_watchlist" value="False" >
+                            <input class="btn btn-primary" type="submit" value="Remove from Watchlist">
+                        </form>
+                    {% else %}
+                        <form class="watchlist form" action="{% url 'watchlist_add' auction.id %}" method="GET">
+                            <input class="watchlist" type="hidden" name="in_watchlist" value="True">
+                            <input class="btn btn-primary" type="submit" value="Add to Watchlist">
+                        </form>
+                    {% endif %}
+                {% else %}
+                    <div class="watchlist form spaceholder"></div>
+                {% endif %}
+
+                <!-- User who created Auction is able to close it-->
+                {% if request.user == auction.creator and not auction.closed %}
+                <form class="close auction" action="{% url 'close_auction' %}">
+                    <input type="hidden" name="auctionId" value={{auction.id}}>
+                    <input class="btn btn-primary" type="submit" value="Close Auction">
+                </form>
+                {% endif %}
+            </div>
+            <div class="auction details" id="bidsWatcher">
+                <div id="numberBids">
+                    <span>{{ number_bids }} bids </span>
+                </div>
+                <div class="numberWatchlist">
+                    <span>{{ number_watchlist }} watcher </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    
+        <div class="auction comments wrapper">
+            <!-- Logged in users can comment on the auction -->
+            {% if request.user.is_authenticated %}
+                <form class="comments form" action="{% url 'comment_auction' auction.id %}" method="post">
+                    {% csrf_token %}
+                    <textarea type="text" name="comment" id="commentContent" placeholder="Enter your comment here."></textarea>
+                    <input class="btn btn-primary" type="submit" value="Send comment">
+                </form>
+                <hr>
+            {% endif %}
+        
+            <!-- displays all comments to this auction-->
+            <div class="auction comments flexbox">
+                {% for comment in comments %}
+                    <div class="comment wrapper">
+                        <div class="comment head">
+                            <div class="comment info author">{{ comment.author }}</div>
+                            <div class="comment info date">{{ comment.created }}</div>
+                        </div>
+                        <div class="comment info content">{{ comment.content }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+      
+
+
+{% endblock %}

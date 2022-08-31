@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Image Search</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="search.css">
+		<script src="https://kit.fontawesome.com/12f2d0c846.js" 
+			crossorigin="anonymous">
+		</script>
+    </head>
+   <body>
+		<header>
+			<nav>
+				<a href="index.html">Search</a>
+				<div id="pointIcon">
+					<i class="fas fa-ellipsis-v"></i><i class="fas fa-ellipsis-v"></i><i class="fas fa-ellipsis-v"></i>
+				</div>
+				
+			</nav>
+		</header>
+		
+		<main>
+			<center>
+				<div id="logowrapper">
+					<img id="googleLogo" src="https://www.google.de/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">
+					<div id="logoImages">images</div>
+				</div>
+				<form action="https://google.com/search">
+					<div id="inputContainer">
+						<i class="fas fa-search"></i>
+						<div id="searchbarContainer">
+							<input id="searchbar" type="text" name="q">
+						</div>
+						<input type="hidden" name="tbm" value="isch" class="button">
+						<button id="imagesSubmitButton" type="submit">
+							<i id="imagesSubmitIcon" class="fas fa-search"></i>
+						</button>
+					</div>
+				</form>
+			</center>
+		</main>
+		
+		<footer>
+			<div class="footer left">
+				<a href="#">Advertising</a>
+				<a href="#">Business</a>
+				<a href="#">How Search works</a>
+			</div>
+			<div class="footer right">
+				<a href="#">Privacy</a>
+				<a href="#">Terms</a>
+				<a href="#">Settings</a>
+			</div>
+		</footer>
+    </body>
+</html>

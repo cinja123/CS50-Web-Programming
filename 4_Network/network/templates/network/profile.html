@@ -1,0 +1,90 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block title %} {{profile.username}} {% endblock %}
+
+{% block head %}
+    <script src="https://kit.fontawesome.com/12f2d0c846.js" crossorigin="anonymous">
+    </script>
+    {% if profile != user %}
+        <script src="{% static 'network/follow.js' %}"></script>
+    {% endif %}
+    <script src="{% static 'network/post.js' %}"></script>
+    <link href="{% static 'network/profile.css' %}" rel="stylesheet">
+    <link href="{% static 'network/posts.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+    <div id="top">
+        <h2>{{profile.username}}</h2>
+
+        {% if user.is_authenticated and user != profile %}
+            <button id="followButton">...</button>
+        {% endif %}
+    </div>
+
+    <div id="infos">
+        {% if profile.picture %} 
+            <img id="picture" src="{{profile.picture.url}}">
+        {% else %}
+            <img id="picture" src="../media/network/default.png">
+        {% endif %}
+    
+       
+        <div id="posts" class="infoCircle"> 
+            <div>{{ profile.posts.all.count }}</div>
+            <div>Posts</div>
+        </div>
+        <div id="followers" class="infoCircle"> 
+            <div>{{ profile.followers.all.count }}</div>
+            <div>Followers</div>
+        </div>
+        <div id="following" class="infoCircle">
+            <div>{{ profile.following_user.all.count }}</div>
+            <div>Following</div>
+        </div>
+    </div>
+
+    <div id="postsContainer">
+        {% for post in post_page %}
+            <div class="post container">
+                <div class="post head">
+                    <a href="{% url 'profile' post.creator.id %}" class="post creator" >{{ post.creator }}</a>
+                    <div class="post timestamp">{{ post.timestamp }}</div>
+                </div>
+                <div class="post body {{ post.id }}">{{post.content}}</div>
+                <div class="post footer">
+                    {% if request.user in post.like.all %}
+                        <div class="post likes yes"><i class="fas fa-heart" data-post-id="{{ post.id }}"></i><span>{{ post.like.all.count }}</span> </div>
+                    {% else %}
+                        <div class="post likes no"><i class="fas fa-heart" data-post-id="{{ post.id }}"></i><span>{{ post.like.all.count }}</span></div>
+                    {% endif %}
+                    {% if request.user == post.creator %}
+                        <button class="editButton" data-post-id="{{ post.id }}">Edit</button>
+                    {% else %}
+                        <button class="placeholder button">Place</button>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+        {% if post_page.has_other_pages %}
+            <ul class="pagination">
+                {% if post_page.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ post_page.previous_page_number }}">Previous</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                {% endif %}
+                {% for i in post_page.paginator.page_range %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endfor %}
+                {% if post_page.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ post_page.next_page_number }}">Next</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">Next</span></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    </div>
+    
+{% endblock %}

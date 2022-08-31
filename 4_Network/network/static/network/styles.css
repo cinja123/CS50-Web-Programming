@@ -1,0 +1,16 @@
+/* Style the new post area */
+#newPost {
+    padding: 10px;
+
+}
+
+#newPost textarea{
+    border-radius: 5px;
+}
+
+#newPost textarea, #postSubmitWrapper{
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+}

@@ -1,0 +1,93 @@
+
+.body {
+    padding: 15px;
+}
+
+h2{
+    display:inline-block;
+    font-size: 250%;
+    font-weight: 600;
+}
+
+#top{
+    position: relative;
+    margin-bottom: 10px;
+}
+
+#followButton{
+    position: absolute;
+    top: 10px;
+    min-width: 35px;
+    width: 20%;
+    margin-left: 6%;
+
+    background: transparent;
+    color:#c1e6e7;
+    font-size: 120%;
+    letter-spacing: 2px;
+    font-weight: 700;
+    border: 2px solid #c1e6e7;
+    border-radius: 30px;
+    transition: all .3s ease-in-out;
+}
+
+#followButton:hover{
+    background: #c1e6e7;
+    color: white;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+
+}
+
+#infos{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 25px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #b7dfe5, #e5ffee);
+}
+
+#picture{
+    width: 25vw;
+    max-width: 250px;
+    height: 25vw;
+    max-height: 250px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.infoCircle{
+    width: 15vw;
+    height: 15vw;
+    max-width: 180px;
+    max-height: 180px;
+    border-radius: 50%;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+    opacity: 0.6;
+    background: linear-gradient(135deg, #ffebe5, #f3e5ff);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s ease;
+}
+
+.infoCircle:hover{
+    font-size: 120%;
+    width: 20vw;
+    height: 20vw;
+    max-width: 200px;
+    max-height: 200px;
+    opacity: 1;
+}
+
+.infoCircle div:first-child{
+    font-weight: 700;
+    font-size: 130%;
+}
+
+
+

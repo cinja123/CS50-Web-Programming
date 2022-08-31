@@ -1,0 +1,205 @@
+*{
+	margin: 0;
+	padding:0;
+	box-sizing: border-box;
+}
+
+body{
+	font-family: arial,sans-serif;
+}
+
+nav{
+	height: 60px;
+	background-color: #f1f1f1;
+	display: flex;
+	justify-content: space-between
+}
+
+#googleLogo{
+	height: 33px;
+	margin: 13.5px 15px;
+}
+
+#navLeft{
+	display: flex;
+}
+
+#navLeft a{
+	line-height: 60px;
+	text-decoration: none;
+	color: #222;
+}
+
+#navLeft a:hover{
+	text-decoration: #222 solid underline;
+}
+
+#pointIcon{
+	height: 30px;
+	display: flex;
+	align-items: center;
+	margin: 15px;
+	padding: 0 6px;
+}
+
+#pointIcon:hover{
+	cursor: pointer;
+	display: inline-block;
+}
+#pointIcon:hover .fas.fa-ellipsis-v{
+	color: rgba(0,0,0,.2);
+}
+
+#headingAdvSearch{
+	color: #d93025;
+	font-size: 20px;
+	font-weight: 400;
+	padding: 25px 45px;
+	border-bottom: 1px solid #f1f1f1;
+}
+
+main{
+	margin: 40px 45px;
+	min-height: calc(100vh - 133.8px - 40px - 80px);
+}
+
+main div{
+	font-weight: 400;
+}
+
+main p{
+	float: left;
+}
+
+main p:first-child{
+	height: 41px;
+	min-width: calc(167px + 167px);
+	width: calc(16% + 45%);
+}
+
+main p:nth-child(2){
+	display: none;
+	height: 41px;
+	color: #777;
+	font-size: 13px;
+	font-weight: 400;
+	padding-left: 5px;
+}
+
+.searchDescr{
+	width: 16%;
+	min-width: 167px;
+	height: 42px;
+	color: #222;
+	font-size: 13px;
+	line-height: 16px;
+}
+
+.searchbar{
+	min-width: 167px;
+	width: 45%;
+	min-height: 25px;
+	margin-bottom: 16px;
+	border-radius: 3px;
+	border: 1px solid rgba(0,0,0,.2);
+	padding: 0px 10px;
+}
+
+.searchbar:focus{
+	outline: .5px solid #4888f0;
+}
+
+.searchDescr, .searchbar{
+	float: left;
+}
+.textWrapper{
+	clear: both;
+}
+
+.greyExpl{
+	display: none;
+	color: #555;
+	font-size: 11px;
+	width: 23%;
+	margin-left: 20px;
+	float: left;
+}
+
+.greyExpl span{
+	font-family:monospace;
+	color: #666;
+}
+
+@media only screen and (min-width: 1100px){
+	.greyExpl{
+		display: block;
+	}
+	main p:nth-child(2){
+		display: block;
+	}
+}
+
+#buttonOuterWrapper{
+	clear: both;
+}
+
+#buttonSpace{
+	height: 42px;
+	min-width: 167px;
+	width: 16%;
+	float: left;
+}
+
+#buttonWrapper{
+	min-width: 167px;
+	width: 45%;
+	float:left;
+	text-align: right;
+}
+
+form button{
+	background: #4888f0;
+	color: white;
+	border: 1px solid #3079ed;
+	height: 30px;
+	line-height: 100%;
+	min-width: 120px;
+	display: block;
+	float: right;
+	margin: 10px 0px;
+}
+
+form button:hover{
+	cursor: pointer;
+}
+
+footer{
+	height: 40px;
+	background-color: #f1f1f1;
+}
+
+#footerWrapper{
+	margin-left: 45px;
+}
+
+footer a{
+	text-decoration: none;
+	color: #807589;
+	line-height: 40px;
+	padding-left: 27px;
+}
+
+footer a:first-child{
+	padding-left: 0px;
+}
+
+footer a:hover{
+	color: #222;
+}
+
+
+
+
+
+
+

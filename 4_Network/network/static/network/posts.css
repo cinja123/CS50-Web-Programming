@@ -1,0 +1,89 @@
+#postsContainer{
+    padding: 15px;
+}
+
+/* Style the view of a post */
+
+.post.container{
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.post.head, .post.body, .post.footer{
+    padding: 2px 15px;
+}
+
+.post.head{
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px 5px 0 0;
+    border: 1px solid black;
+    border-bottom: none;
+    background: lightblue;
+    background-image: linear-gradient(to right, transparent, #e5ffe5, #e5fff2, #e5ffff, #e5f2ff, #e5e5ff, #f2e5ff, #ffe5ff, #ffe5f2, #ffe5e5, #ffece5, transparent);
+}
+
+.post.creator{
+    font-weight: 700;
+}
+
+.post.body{
+    border: 1px solid black;
+    border-top: none;
+    border-bottom: none;
+    min-height: 40px;
+    white-space: pre-wrap;
+}
+
+.post.footer{
+    border-radius: 0 0 5px 5px;
+    border: 1px solid black;
+    border-top: none;
+    background-image: linear-gradient(to top, #c6dee6, transparent);
+    display: flex;
+    justify-content: space-between;
+}
+
+.post.likes i {
+    padding: 3px 3px 3px 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.post.likes i:hover{
+    font-size: 150%;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.post.likes.yes i{
+    color: red;
+}
+
+.post .editButton, .saveButton{
+    position: relative;
+    bottom: 5px;
+    background: transparent;
+    border-radius: 3px;
+    border: 1px solid gray;
+}
+
+.post .editButton:hover, .saveButton:hover{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    
+}
+
+.edit.area{
+    width: 100%;
+}
+
+.placeholder.button{
+    visibility: hidden;
+    border: 1px solid gray;
+}
+
+.pagination{
+    display: flex;
+    justify-content: center;
+}
+

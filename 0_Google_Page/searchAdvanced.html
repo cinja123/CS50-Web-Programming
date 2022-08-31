@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Advanced Search</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="searchAdvanced.css">
+		<script src="https://kit.fontawesome.com/12f2d0c846.js" 
+			crossorigin="anonymous">
+		</script>
+    </head>
+	<body>
+		<header>
+			<nav>
+				<a href="index.html">
+					<img id="googleLogo" src="https://www.google.de/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">
+				</a>
+				<div id="navLeft">
+					<a href="index.html">Search</a>
+					<div id="pointIcon">
+						<i class="fas fa-ellipsis-v"></i><i class="fas fa-ellipsis-v"></i><i class="fas fa-ellipsis-v"></i>
+					</div>
+				</div>
+			</nav>
+			
+			<h2 id="headingAdvSearch">Advanced Search</h2>
+		</header>
+		<main>
+			<div class="textWrapper">
+				<p>Find pages with...</p>
+				<p>To do this in the search box.</p>
+			</div>
+			<form action="https://google.com/search">
+				<div class="textWrapper">
+					<div class="searchDescr">all these words:</div>
+					<input class="searchbar" type="text" name="as_q">
+					<div class="greyExpl">Type the important words: <span>tri-colour rat terrier</span></div>
+				</div>
+				<div class="textWrapper">
+					<div class="searchDescr">this exact word or phrase:</div>
+					<input class="searchbar" type="text" name="as_epq">
+					<div class="greyExpl">Put exact words in quotes: "<span>rat terrier"</span>"</div>
+				</div>
+				<div class="textWrapper">
+					<div class="searchDescr">any of these words:</div>
+					<input class="searchbar" type="text" name="as_oq">
+					<div class="greyExpl">Type <span>OR</span> between all the words you want: <span>miniature OR standard</span></div>
+				</div>
+				<div class="textWrapper">
+					<div class="searchDescr">none of these words:</div>
+					<input class="searchbar" type="text" name="as_eq">
+					<div class="greyExpl">Put a minus sign just before words that you don't want: <span>-rodent, -"Jack Russell"</span></div>
+				</div>
+				<div id="buttonOuterWrapper">
+					<div id="buttonSpace"></div>
+					<div id="buttonWrapper">
+						<button type="submit">Advanced Search</button>
+					</div>
+				</div>
+			
+			</form>
+		</main>
+		
+		<footer>
+			<span id="footerWrapper">
+				<a href="#">Help</a>
+				<a href="#">Privacy</a>
+				<a href="#">Terms</a>
+			</span>
+		</footer>
+    </body>
+</html>

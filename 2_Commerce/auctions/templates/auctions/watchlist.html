@@ -1,0 +1,36 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+    My Watchlist
+{% endblock %}
+
+{% block body %}
+    <h2>{{request.user.username}}'s Watchlist</h2>
+    <div class="index listing wrapper">
+        {% for watch in watchlist %}
+            <div class="index auction wrapper"><a href="{% url 'auction' watch.auction.id %}">
+
+                {% if watch.auction.image_url %}
+                    <img class="index auction image" src="{{ watch.auction.image_url }}">
+                {% else %}
+                    <img class="index auction image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png">
+                {% endif %}
+
+                <div class="index auction title">
+                    {{ watch.auction.title }}
+                </div>
+
+                <div class="index auction description">{{ watch.auction.description }}</div>
+                
+                {% if not watch.auction.closed %}
+                    <div class="index auction price">$ {{ watch.auction.get_current_price }}</div>
+                {% else %}
+                    <div class="index auction price closed"><span>Sold: </span>$ {{ watch.auction.get_current_price }}</div>
+                {% endif %}
+            </a></div>
+        {% empty %}
+            No Auction in Watchlist.
+        {% endfor %}
+    </div>
+
+{% endblock %}
